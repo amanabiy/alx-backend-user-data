@@ -3,7 +3,7 @@
 Hash password
 """
 from typing import ByteString
-import bcrypt # type: ignore
+import bcrypt  # type: ignore
 
 
 def hash_password(password: str) -> bytes:

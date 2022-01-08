@@ -3,7 +3,6 @@
 import re
 import logging
 from typing import List
-from typing_extensions import Self
 import mysql.connector
 import os
 

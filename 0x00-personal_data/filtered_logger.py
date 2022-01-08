@@ -34,7 +34,7 @@ class RedactingFormatter(logging.Formatter):
                             super().format(record), self.SEPARATOR)
 
 
-def get_logger() -> logging.LogRecord:
+def get_logger() -> logging.Logger:
     """
     returns logger for user_data
     """

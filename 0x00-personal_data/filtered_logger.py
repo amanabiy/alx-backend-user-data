@@ -3,7 +3,8 @@
 import re
 import logging
 from typing import List
-
+from typing_extensions import Self
+PII_FIELDS = ('email', 'phone', 'ssn', 'password', 'ip')
 
 def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
@@ -30,3 +31,15 @@ class RedactingFormatter(logging.Formatter):
         """ format """
         return filter_datum(self.fields, self.REDACTION,
                             super().format(record), self.SEPARATOR)
+def get_logger() -> logging.LogRecord:
+    """
+    returns logger for user_data
+    """
+    logger = logging.getLogger('user_data')
+    logger.setLevel(logging.INFO)
+    formatter = RedactingFormatter(list(PII_FIELDS))
+
+    st_handler = logging.StreamHandler()
+    st_handler.setFormatter(formatter)
+    logger.addHandler(st_handler)
+    return logger

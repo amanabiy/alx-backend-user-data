@@ -6,6 +6,7 @@ from typing import List
 from typing_extensions import Self
 PII_FIELDS = ('email', 'phone', 'ssn', 'password', 'ip')
 
+
 def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
     """ a filter that replaces fields with redaction in message"""
@@ -31,6 +32,8 @@ class RedactingFormatter(logging.Formatter):
         """ format """
         return filter_datum(self.fields, self.REDACTION,
                             super().format(record), self.SEPARATOR)
+
+
 def get_logger() -> logging.LogRecord:
     """
     returns logger for user_data

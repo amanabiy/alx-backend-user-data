@@ -6,7 +6,7 @@ from typing import ByteString
 import bcrypt # type: ignore
 
 
-def hash_password(password: str) -> ByteString:
+def hash_password(password: str) -> bytes:
     """
     returns the hashed byte string of a password
     """

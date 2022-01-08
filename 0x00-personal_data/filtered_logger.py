@@ -4,6 +4,8 @@ import re
 import logging
 from typing import List
 from typing_extensions import Self
+
+
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
@@ -35,9 +37,7 @@ class RedactingFormatter(logging.Formatter):
 
 
 def get_logger() -> logging.Logger:
-    """
-    returns logger for user_data
-    """
+    """ returns logger for user_data """
     logger = logging.getLogger('user_data')
     logger.setLevel(logging.INFO)
     logger.propagate = False

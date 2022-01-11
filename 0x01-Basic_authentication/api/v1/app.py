@@ -22,6 +22,7 @@ if AUTH_TYPE == 'auth':
 if AUTH_TYPE == 'basic_auth':
     auth = BasicAuth()
 
+
 @app.before_request
 def before_request() -> str:
     """ Autherize before request
@@ -37,7 +38,7 @@ def before_request() -> str:
         abort(403)
     else:
         pass
-        
+
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:

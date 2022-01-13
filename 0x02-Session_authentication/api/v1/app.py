@@ -33,7 +33,8 @@ elif AUTH_TYPE == "session_auth":
 def before_request() -> str:
     """ Autherize before request
     """
-    paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+    paths = ['/api/v1/status/', '/api/v1/unauthorized/',
+             '/api/v1/forbidden/', '/api/v1/auth_session/login/']
     request.current_user = auth.current_user(request)
     if auth is None:
         pass

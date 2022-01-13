@@ -4,6 +4,7 @@ A session athentication module
 """
 from uuid import uuid4
 from api.v1.auth.auth import Auth
+from models.user import User
 
 
 class SessionAuth(Auth):
@@ -28,3 +29,15 @@ class SessionAuth(Auth):
         if isinstance(session_id, str):
             return None
         return SessionAuth.user_id_by_session_id.get(session_id, None)
+
+    def current_user(self, request=None) -> str:
+        """ return the current user
+        """
+        if request is None:
+            return None
+        cookie = self.session_cookie(request)
+        if cookie is None:
+            return None
+        user_id = self.user_id_for_session_id(cookie)
+        return User.get(user_id)
+        

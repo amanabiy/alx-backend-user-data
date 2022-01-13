@@ -21,7 +21,7 @@ class Base():
         """
         s_class = str(self.__class__.__name__)
         if DATA.get(s_class) is None:
-            DATA[s_class].values()
+            # DATA[s_class].values()
             DATA[s_class] = {}
 
         self.id = kwargs.get('id', str(uuid.uuid4()))

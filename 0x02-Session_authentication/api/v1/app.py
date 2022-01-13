@@ -41,7 +41,11 @@ def before_request() -> str:
     elif not auth.require_auth(request.path, paths):
         pass
     elif auth.authorization_header(request) is None:
-        abort(401)
+        cookie = auth.session_cookie(request)
+        if cookie is None:
+            abort(401)
+        if auth.user_id_for_session_id(cookie) is None:
+            abort(403)
     elif auth.current_user(request) is None:
         abort(403)
     else:

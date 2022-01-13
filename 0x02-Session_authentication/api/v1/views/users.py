@@ -89,6 +89,7 @@ def create_user() -> str:
             error_msg = "Can't create User: {}".format(e)
     return jsonify({'error': error_msg}), 400
 
+
 @app_views.route('/users/me', methods=['GET'], strict_slashes=False)
 def current_user() -> str:
     """ Returns details of the current
@@ -97,7 +98,9 @@ def current_user() -> str:
     if request.current_user:
         return jsonify(request.current_user.to_json())
     else:
-        abort(404) 
+        abort(404)
+
+
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def update_user(user_id: str = None) -> str:
     """ PUT /api/v1/users/:id

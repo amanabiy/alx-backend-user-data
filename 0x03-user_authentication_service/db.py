@@ -35,7 +35,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str) -> TypeVar('User'):
+    def add_user(self, email: str, hashed_password: str) -> User:
         """ save the user to the database
         """
         session = self._session
@@ -44,7 +44,7 @@ class DB:
         session.commit()
         return new_user
 
-    def find_user_by(self, **kwargs) -> TypeVar('User'):
+    def find_user_by(self, **kwargs) -> User:
         """ find the first user
         """
         session = self._session

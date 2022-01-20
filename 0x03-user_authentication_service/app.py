@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ Flask app module
 """
-from crypt import methods
 from flask import Flask
 from flask import jsonify, request, abort, redirect, make_response
 from auth import Auth

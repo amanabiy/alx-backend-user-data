@@ -58,10 +58,9 @@ class Auth:
             user = self._db.find_user_by(email=email)
             user_session = _generate_uuid()
             self._db.update_user(user.id, session_id=user_session)
-            print(user.session_id)
             return user_session
         except Exception:
-            return None
+            return
 
     def get_user_from_session_id(self, session_id: str) -> TypeVar('User'):
         """ Get the user form session id

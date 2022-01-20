@@ -3,7 +3,7 @@
 """
 from crypt import methods
 from flask import Flask
-from flask import jsonify, request, abort, make_response, redirect, url_for
+from flask import jsonify, request, abort, redirect
 from auth import Auth
 
 

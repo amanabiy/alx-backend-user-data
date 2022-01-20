@@ -3,7 +3,7 @@
 """
 from crypt import methods
 from flask import Flask
-from flask import jsonify, request, abort, redirect
+from flask import jsonify, request, abort, redirect, make_response
 from auth import Auth
 
 
@@ -67,7 +67,7 @@ def profile():
     user = AUTH.get_user_from_session_id(session_id)
     if user is None:
         abort(403)
-    return jsonify({"email": user.email})
+    return jsonify({"email": user.email}), 200
 
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)

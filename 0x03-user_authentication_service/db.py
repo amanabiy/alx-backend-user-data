@@ -5,7 +5,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
-from user import Base, User
+
+from user import Base
+from user import User
 
 
 class DB:
@@ -32,18 +34,20 @@ class DB:
     def add_user(self, email: str, hashed_password: str) -> User:
         """ save the user to the database
         """
-        session = self._session
+        # session = self._session
         new_user = User(email=email, hashed_password=hashed_password)
-        session.add(new_user)
-        session.commit()
+        self._session.add(new_user)
+        self._session.commit()
         return new_user
 
     def find_user_by(self, **kwargs) -> User:
         """ find the first user
         """
-        session = self._session
+        if not kwargs:
+            raise InvalidRequestError
+        # session = self._session
         try:
-            user = session.query(User).filter_by(**kwargs).first()
+            user = self._session.query(User).filter_by(**kwargs).first()
         except InvalidRequestError:
             raise (InvalidRequestError)
         if user is None:

@@ -5,8 +5,9 @@ from sqlalchemy import Column, Integer, String
 Base = declarative_base()
 
 
-class User(Base): # type: ignore
-    """ SQLAlchemy model for a database table named users """
+class User(Base):  # type: ignore
+    """ SQLAlchemy model for a database table named users
+    """
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String(250), nullable=False)
